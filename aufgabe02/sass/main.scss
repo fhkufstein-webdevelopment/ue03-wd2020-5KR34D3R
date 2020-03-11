@@ -1,101 +1,93 @@
 @import "compass/reset";
 @import "compass/css3";
 
+/*
+hab bei transition duration eine meldung,
+dass die 0 ein fehler ist, macht es was aus?
+ */
+
+@mixin borderMargin($color){
+    border:1px solid $color;
+    margin:10px 5px 10px 5px;
+}
+@mixin withBackground($with,$color){
+    width: $with;
+    background-color: $color;
+}
+@mixin floatWith($with){
+    width:$with;
+    float:left;
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
+    /* hab für smoothing nichts gefuden eventuell
+    @include font-smoothing:antialiased;
+     */
     font-family:'Open Sans', sans-serif;
-}
+    #main{
+        width: 990px;
+        margin:0 auto;
 
-/* dies ist ein kommentar */
-#main {
-    width: 990px;
-    margin:0 auto;
-}
+        input[type="text"],input[type="password"] {
+            @include borderMargin(#000);
+            padding:5px;
+            width: 180px;
+        }
+        input[type="submit"] {
+            @include borderMargin(#000);
+            border-radius:0;
+            background-color:#fafafa;
+            cursor:pointer;
+        }
 
-
-input[type="text"],input[type="password"] {
-    border:1px solid #000;
-    padding:5px;
-    margin:10px 5px 10px 5px;
-
-    width: 180px;
-}
-
-input[type="submit"] {
-    border:1px solid #000;
-    border-radius:0;
-    background-color:#fafafa;
-    margin:10px 5px 10px 5px;
-    cursor:pointer;
-}
-
-label {
-    margin-left:5px;
+        label {
+            margin-left:5px;
+        }
+    }
 }
 
 .passwordField {
-    width:300px;
-    float:left;
+    @include floatWith(300px);
 }
 
 .passwordFeedback {
-    width:250px;
-    float:left;
+    @include floatWith(250px);
 }
 
-.feedback {
+.feedback{
+    display: none;
     margin:10px 5px 10px 5px;
     font-size:11px;
     font-weight:600;
-
-}
-
-.feedback.error {
-    color:#d9534f;
-}
-
-.feedback.warning {
-    color:#f0ad4e;
-}
-
-.feedback.success {
-    color:#5cb85c;
+    .error{
+        color:#d9534f;
+    }
+    .warning {
+        color:#f0ad4e;
+    }
+    .success {
+        color:#5cb85c;
+    }
 }
 
 .strengthIndicator {
-    margin:10px 5px 10px 5px;
+    @include borderMargin(#d3d3d3);
     width: 200px;
     padding:5px;
     height: 13px;
-    border:1px solid #d3d3d3;
-}
 
-.strengthIndicator::before {
-    content: "";
-    display: block;
-    height: 100%;
+    &::before{
+        content: "";
+        display: block;
+        height: 100%;
 
-    -moz-transition-property: width;
-    -o-transition-property: width;
-    -webkit-transition-property: width;
-    transition-property: width;
-
-    -moz-transition-delay: 0;
-    -o-transition-delay: 0;
-    -webkit-transition-delay: 0;
-    transition-delay: 0;
-
-    -moz-transition-duration: 250ms;
-    -o-transition-duration: 250ms;
-    -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
-
-    -moz-transition-timing-function: linear;
-    -o-transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
+        @include transition-property(with);
+        @include transition-delay(0);
+        @include transition-duration(250ms);
+        @include transition-timing-function(linear);
+    }
 }
 
 .passwordWrapper::after {
@@ -105,34 +97,29 @@ label {
     float: none;
 }
 
-.error .strengthIndicator::before {
-    width: 10%;
-    background-color: #d9534f;
+.error{
+    .strengthIndicator::before {
+        @include withBackground(10%,#d9534f);
+    }
+    .feedback.error {
+        display: block;
+    }
 }
 
-.warning .strengthIndicator::before {
-    width: 60%;
-    background-color: #f0ad4e;
+.warning{
+    .strengthIndicator::before {
+        @include withBackground(60%,#f0ad4e);
+    }
+    .feedback.warning {
+        display: block;
+    }
 }
 
-.success .strengthIndicator::before {
-    width: 100%;
-    background-color: #5cb85c;
+.success {
+    .strengthIndicator::before {
+        @include withBackground(100%,#5cb85c);
+    }
+    .feedback.success {
+        display: block;
+    }
 }
-
-.feedback.error, .feedback.warning, .feedback.success {
-    display: none;
-}
-
-.error .feedback.error {
-    display: block;
-}
-
-.warning .feedback.warning {
-    display: block;
-}
-
-.success .feedback.success {
-    display: block;
-}
-
