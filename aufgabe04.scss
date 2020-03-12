@@ -1,0 +1,24 @@
+@mixin margin($top, $left: false,$right: false,$bottom: false){
+  @if ($top and $left and $right and $bottom){
+    margin: $top $left $right $bottom;
+  }@else if($top and $left and $right){
+    margin: $top $left $right;
+  }@else if($top and $left){
+    margin: $top $left;
+  }@else {
+    margin: $top;
+  }
+}
+
+@mixin breakpoint($breite){
+  @media only screen and (min-width: $breite) {
+    @content
+  }
+}
+
+.mobileInvisible{
+  display: none;
+  @include breakpoint(990px){
+    display: block;
+  }
+}

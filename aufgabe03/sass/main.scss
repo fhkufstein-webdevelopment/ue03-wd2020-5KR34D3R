@@ -3,44 +3,73 @@
 //sollte diese folgende Zeile zu einer Fehlermeldung führen - kommentieren Sie die folgende und die obere Zeile aus und kommentieren Sie die nachfolgende ein
 @import "compass/css3";
 
-
-
+/*
+    Problem meiner seite, bei mir wird jedes elemente immer als ease-in-out genutz auch wenn ich
+    gesaft habe es soll nur ease in sein oder eben out.
+    CSS Transitions Currently only works in Webkit.
+    expected in CSS3, FireFox 3.6/7 and Opera Presto 2.3
+    benutze zurzeit Chrome;
+ */
 @import "base"; /* inkludiert die Datei _base.scss */
 @import "button"; /* inkludiert die Datei _button.scss */
 
+@mixin transition($duration,$delay,$timing){
+    @include transition-duration($duration);
+    @include transition-delay($delay);
+    @include transition-timing-function($timing);
+}
 
 .btn {
     /* TODO */
-
+    @include transition(600ms,200ms,linear);
     &.ease-in {
         /* TODO */
+        /* sollte langsam aufgehen und schnell zurückgehen*/
+        @include transition(700ms,300ms,ease-in);
+        left: 80px;
     }
 
     &.ease-out {
         /* TODO */
+        /* sollte am anfang schnell aufgehen und zum schluss langsam zurückgehen */
+        @include transition(800ms,600ms,ease-out);
     }
 
     &.ease-in-out {
         /* TODO */
+        /* sollte langsam aufghen und langsam zurückgehen */
+        @include transition(900ms,400ms,ease-in-out);
     }
 
     &.green {
         /* TODO */
+        @include transition(800ms,100ms,linear);
+        @include transition-property(all);
     }
 
+
+
     &.animation {
+
         position: absolute;
         left:0;
         top:0;
         right:auto;
         bottom:auto;
-        animation-timing-function: linear;
+
     }
 }
 
 body:hover .animation {
-    animation-name:myanimation2;
-    animation-duration:5s;
+    animation-name:myanimation;
+    animation-duration:10s;
+    @keyframes myanimation {
+        0%  {top: 0; left: 0;}
+        25% {left: 93%; top: 0;}
+        50% {left: 93%; top: 93%;}
+        75% {left: 0%; top: 93%;}
+        100%{left: 0; top: 0;}
+    }
 }
 
 
@@ -48,4 +77,3 @@ body:hover .animation {
     padding-left: 25px;
     padding-right: 25px;
 }
-

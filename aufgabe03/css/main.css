@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* line 5, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,49 +21,56 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../usr/local/lib/ruby/gems/2.4.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
+/*
+    Problem meiner seite, bei mir wird jedes elemente immer als ease-in-out genutz auch wenn ich
+    gesaft habe es soll nur ease in sein oder eben out.
+    CSS Transitions Currently only works in Webkit.
+    expected in CSS3, FireFox 3.6/7 and Opera Presto 2.3
+    benutze zurzeit Chrome;
+ */
 /* line 3, ../sass/_base.scss */
 * {
   /* nachdem es bei ein paar von Ihnen Schwierigkeiten mit den Mixins beim import von "compass/css3" gegeben hat - Verzichte ich auf Mixins und schreibe diese mit Browserpräfixen aus */
@@ -155,43 +162,131 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* inkludiert die Datei _button.scss */
-/* line 12, ../sass/main.scss */
+/* line 22, ../sass/main.scss */
 .btn {
   /* TODO */
+  -moz-transition-duration: 600ms;
+  -o-transition-duration: 600ms;
+  -webkit-transition-duration: 600ms;
+  transition-duration: 600ms;
+  -moz-transition-delay: 200ms;
+  -o-transition-delay: 200ms;
+  -webkit-transition-delay: 200ms;
+  transition-delay: 200ms;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
-/* line 15, ../sass/main.scss */
+/* line 25, ../sass/main.scss */
 .btn.ease-in {
   /* TODO */
+  /* sollte langsam aufgehen und schnell zurückgehen*/
+  -moz-transition-duration: 700ms;
+  -o-transition-duration: 700ms;
+  -webkit-transition-duration: 700ms;
+  transition-duration: 700ms;
+  -moz-transition-delay: 300ms;
+  -o-transition-delay: 300ms;
+  -webkit-transition-delay: 300ms;
+  transition-delay: 300ms;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  left: 80px;
 }
-/* line 19, ../sass/main.scss */
+/* line 32, ../sass/main.scss */
 .btn.ease-out {
   /* TODO */
+  /* sollte am anfang schnell aufgehen und zum schluss langsam zurückgehen */
+  -moz-transition-duration: 800ms;
+  -o-transition-duration: 800ms;
+  -webkit-transition-duration: 800ms;
+  transition-duration: 800ms;
+  -moz-transition-delay: 600ms;
+  -o-transition-delay: 600ms;
+  -webkit-transition-delay: 600ms;
+  transition-delay: 600ms;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
-/* line 23, ../sass/main.scss */
+/* line 38, ../sass/main.scss */
 .btn.ease-in-out {
   /* TODO */
+  /* sollte langsam aufghen und langsam zurückgehen */
+  -moz-transition-duration: 900ms;
+  -o-transition-duration: 900ms;
+  -webkit-transition-duration: 900ms;
+  transition-duration: 900ms;
+  -moz-transition-delay: 400ms;
+  -o-transition-delay: 400ms;
+  -webkit-transition-delay: 400ms;
+  transition-delay: 400ms;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
 }
-/* line 27, ../sass/main.scss */
+/* line 44, ../sass/main.scss */
 .btn.green {
   /* TODO */
+  -moz-transition-duration: 800ms;
+  -o-transition-duration: 800ms;
+  -webkit-transition-duration: 800ms;
+  transition-duration: 800ms;
+  -moz-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  -webkit-transition-delay: 100ms;
+  transition-delay: 100ms;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
-/* line 31, ../sass/main.scss */
+/* line 52, ../sass/main.scss */
 .btn.animation {
   position: absolute;
   left: 0;
   top: 0;
   right: auto;
   bottom: auto;
-  animation-timing-function: linear;
 }
 
-/* line 41, ../sass/main.scss */
+/* line 63, ../sass/main.scss */
 body:hover .animation {
-  animation-name: myanimation2;
-  animation-duration: 5s;
+  animation-name: myanimation;
+  animation-duration: 10s;
 }
-
-/* line 47, ../sass/main.scss */
+@keyframes myanimation {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  25% {
+    left: 93%;
+    top: 0;
+  }
+  50% {
+    left: 93%;
+    top: 93%;
+  }
+  75% {
+    left: 0%;
+    top: 93%;
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+/* line 76, ../sass/main.scss */
 .btn:hover {
   padding-left: 25px;
   padding-right: 25px;
