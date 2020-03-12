@@ -26,7 +26,6 @@
         /* TODO */
         /* sollte langsam aufgehen und schnell zurückgehen*/
         @include transition(700ms,300ms,ease-in);
-        left: 80px;
     }
 
     &.ease-out {
